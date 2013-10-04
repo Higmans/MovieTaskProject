@@ -21,7 +21,7 @@ public class MoviePosterView extends LinearLayout {
         Point size = new Point();
         Display display = wm.getDefaultDisplay();
         display.getSize(size);
-        int maxWidth = (size.x - 10) / 3;
+        int maxWidth = (size.x - 10) / MainActivity.COLUMNS_COUNT;
         LinearLayout.inflate(context, R.layout.movie_poster_view_layout, this);
         setTag(tag);
         setMinimumWidth(maxWidth);
@@ -29,7 +29,7 @@ public class MoviePosterView extends LinearLayout {
         poster = (ImageView) findViewById(R.id.moviePosterImageView);
         title = (TextView) findViewById(R.id.movieTitle);
         genre = (TextView) findViewById(R.id.movieGenre);
-        poster.setMaxWidth(size.x / 4);
+        poster.setMaxWidth(size.x / (MainActivity.COLUMNS_COUNT + 1));
         poster.setImageResource(posterImage);
         title.setMaxWidth(maxWidth);
         title.setText(titleString);

@@ -22,6 +22,7 @@ public class MainActivity extends Activity {
     String movieActors[];
     String movieDescription[];
     String movieCountry[];
+    static final int COLUMNS_COUNT = 3;
     int movieCounter;
 
     @Override
@@ -42,7 +43,7 @@ public class MainActivity extends Activity {
         moviePosters = getResources().obtainTypedArray(R.array.movie_posters_array);
         fillMovieList();
 
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i <= moviesTitles.length/COLUMNS_COUNT + 1; i++) {
             TableRow row = new TableRow(this);
             row.setWeightSum(15);
             table.addView(row);
