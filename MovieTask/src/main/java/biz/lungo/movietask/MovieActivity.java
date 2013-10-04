@@ -3,12 +3,14 @@ package biz.lungo.movietask;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 public class MovieActivity extends Activity {
+    private static final String LOG_TAG = "Intent error";
     ImageView poster;
     TextView title;
     TextView genre;
@@ -30,14 +32,48 @@ public class MovieActivity extends Activity {
         description = (TextView) findViewById(R.id.descriptionView);
         Intent intent = getIntent();
         int posterImage = intent.getIntExtra("PosterImage", 0);
-        String titleString = intent.getStringExtra("Title");
-        String countryString = intent.getStringExtra("Country");
-        String yearString = intent.getStringExtra("Year");
-        String genreString = intent.getStringExtra("Genre");
-        String directorString = intent.getStringExtra("Director");
-        String actorsString = intent.getStringExtra("Actors");
-        String descriptionString = intent.getStringExtra("Description");
-
+        String titleString = null;
+        if (intent.hasExtra("Title")) {
+            titleString = intent.getStringExtra("Title");
+        }else{
+            Log.e(LOG_TAG, "No Title");
+        }
+        String countryString = null;
+        if (intent.hasExtra("Country")) {
+            countryString = intent.getStringExtra("Country");
+        }else{
+            Log.e(LOG_TAG, "No Country");
+        }
+        String yearString = "0";
+        if (intent.hasExtra("Year")) {
+            yearString = intent.getStringExtra("Year");
+        }else {
+            Log.e(LOG_TAG, "No Year");
+        }
+        String genreString = "";
+        if (intent.hasExtra("Genre")) {
+            genreString = intent.getStringExtra("Genre");
+        } else {
+            Log.e(LOG_TAG, "No Genre");
+        }
+        String directorString = "";
+        if (intent.hasExtra("Director")) {
+            directorString = intent.getStringExtra("Director");
+        } else {
+            Log.e(LOG_TAG, "No Director");
+        }
+        String actorsString = "";
+        if (intent.hasExtra("Actors")) {
+            actorsString = intent.getStringExtra("Actors");
+        } else {
+            Log.e(LOG_TAG, "No Actors");
+        }
+        String descriptionString = "";
+        if (intent.hasExtra("Description")) {
+            descriptionString = intent.getStringExtra("Description");
+        } else {
+            Log.e(LOG_TAG, "No Description");
+        }
         poster.setImageResource(posterImage);
         title.setText(titleString + " (" + yearString + ")");
         genre.setText(genreString);
